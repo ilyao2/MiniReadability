@@ -11,9 +11,9 @@ class HTMLFormatter:
         # Default parameters for lenta.ru and gazeta.ru
         self.rows_size = 80
         self.words_wrap = True
-        self.except_tag_list = ['nav', 'footer', 'header']
+        self.except_tag_list = ['script', 'noscript', 'link', 'nav', 'footer', 'header']
         self.except_class_list = ['b-topic-sidebar', 'b-socials', 'b-topic-addition', 'b-tabloid',
-                                  'b_audio_wrapper', 'b_social_sharing', 'adcenter-wrapper',
+                                  'b_audio_wrapper', 'b-header', 'b_social_sharing', 'adcenter-wrapper',
                                   'closebtn', 'voice-over__label']
         self.except_id_list = ['header', 'footer', 'recommender', 'article_main_video', 'article_pants', 'right']
         self.need_attr_list = ['href', 'src']
@@ -44,7 +44,7 @@ class HTMLFormatter:
     def __get_dom_child_text(self, node):
         """ Recursive func for deep-check html dom-tree """
         text = ''
-        child_list = [e for e in node.children if e.name is not None and e.text != '']
+        child_list = [e for e in node.children if e.name is not None]
         if child_list:
             # Excepting elements
             for child in child_list:
