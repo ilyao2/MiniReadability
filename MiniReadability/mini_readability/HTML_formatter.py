@@ -38,8 +38,37 @@ class HTMLFormatter:
         return req_text
 
     def __set_text_style(self, text):
-        styled_text = text + "styled"
+        pages = text.split('\n')
+        styled_text = ''
+        for page in pages:
+            if len(page) < self.rows_size:
+                styled_text += page + "\n"
+                continue
+            if self.words_wrap:
+                words = page.split(' ')
+                styled_text += self.__wrap_words(words)
+            else:
+                row = '\n'.join([page[i:i + self.rows_size] for i in range(0, len(page), self.rows_size)])
+                styled_text += row + '\n'
+
         return styled_text
+
+    def __wrap_words(self, words) -> str:
+        row = ''
+        page = ''
+        for word in words:
+            if len(row) + len(word) > self.rows_size:
+                if not row:
+                    row = '\n'.join([word[i:i + self.rows_size] for i in range(0, len(word), self.rows_size)])
+                    page += row + '\n'
+                    row = ''
+                    continue
+                page += row + '\n'
+                row = ''
+            row += word + ' '
+        if row:
+            page += row + '\n'
+        return page
 
     def __get_dom_child_text(self, node):
         """ Recursive func for deep-check html dom-tree """
