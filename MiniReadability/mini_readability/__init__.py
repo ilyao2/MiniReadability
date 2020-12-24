@@ -15,7 +15,9 @@ class MiniReadabilityManager:
         self.__text: str = ""
         self.__HTML: str = ""
         self.__URL: str = URL
-        self.read_url(URL)
+        self.__formatter = HTMLFormatter()
+        if str:
+            self.read_url(URL)
 
     @property
     def text(self) -> str:
@@ -37,6 +39,7 @@ class MiniReadabilityManager:
         save mini readable text in file
         path =  [CUR_DIR]/[URL].txt
         """
+        # TODO: save in file
         pass
 
     def read_url(self, URL: str) -> str:
@@ -56,7 +59,6 @@ class MiniReadabilityManager:
 
         self.__HTML = response.text
 
-        formatter = HTMLFormatter()
-        self.__text = formatter.format(self.__HTML)
+        self.__text = self.__formatter.format(self.__HTML)
 
         return self.__text
