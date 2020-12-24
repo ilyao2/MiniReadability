@@ -9,7 +9,9 @@ class HTMLRequiredGetter:
         self.except_class_list = ['b-topic-sidebar', 'b-socials', 'b-topic-addition', 'b-tabloid',
                                   'b_audio_wrapper', 'b-header', 'b_social_sharing', 'adcenter-wrapper',
                                   'closebtn', 'voice-over__label']
-        self.except_id_list = ['header', 'footer', 'recommender', 'article_main_video', 'article_pants', 'right']
+        self.except_id_list = ['header', 'footer', 'recommender', 'article_main_video',
+                               'article_pants', 'right', 'news-left', 'news-right',
+                               'news-pants', 'rcm_home', 'add_rcm_point']
         self.need_attr_list = ['href', 'src']
 
     def get_required_text(self, HTML: str) -> str:

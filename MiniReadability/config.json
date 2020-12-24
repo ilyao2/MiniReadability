@@ -19,7 +19,8 @@
     "recommender",
     "article_main_video",
     "article_pants",
-    "right"
+    "right",
+    "news-left"
   ],
   "except_tag_list": [
     "script",
@@ -27,7 +28,11 @@
     "link",
     "nav",
     "footer",
-    "header"
+    "header", 
+    "news-right",
+    "news-pants", 
+    "rcm_home", 
+    "add_rcm_point"
   ],
   "need_attr_list": [
     "href",
