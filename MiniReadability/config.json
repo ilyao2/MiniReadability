@@ -1,0 +1,36 @@
+{
+  "words_wrap": true,
+  "rows_size": 80,
+  "except_class_list": [
+    "b-topic-sidebar",
+    "b-socials",
+    "b-topic-addition",
+    "b-tabloid",
+    "b_audio_wrapper",
+    "b-header",
+    "b_social_sharing",
+    "adcenter-wrapper",
+    "closebtn",
+    "voice-over__label"
+  ],
+  "except_id_list": [
+    "header",
+    "footer",
+    "recommender",
+    "article_main_video",
+    "article_pants",
+    "right"
+  ],
+  "except_tag_list": [
+    "script",
+    "noscript",
+    "link",
+    "nav",
+    "footer",
+    "header"
+  ],
+  "need_attr_list": [
+    "href",
+    "src"
+  ]
+}

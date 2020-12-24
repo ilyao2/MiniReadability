@@ -10,16 +10,12 @@ class HTMLFormatter:
     def __init__(self) -> None:
         # All parameters can be in config.json
         # Default parameters for lenta.ru and gazeta.ru
-        self.__getter = HTMLRequiredGetter()
-        self.__styler = TextStyler()
-
-    def set_config(self, json):
-        """ Set parameters from configure json """
-        pass
+        self.getter = HTMLRequiredGetter()
+        self.styler = TextStyler()
 
     def format(self, HTML: str) -> str:
         """ Format HTML to readability text with current parameters """
-        text = self.__getter.get_required_text(HTML)
-        text = self.__styler.set_text_style(text)
+        text = self.getter.get_required_text(HTML)
+        text = self.styler.set_text_style(text)
 
         return text

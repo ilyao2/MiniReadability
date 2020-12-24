@@ -1,4 +1,5 @@
 import requests
+import json
 from mini_readability.HTML_formatter import HTMLFormatter
 
 
@@ -11,13 +12,11 @@ class MiniReadabilityManager:
     - save readability text in local file
     """
 
-    def __init__(self, URL: str = "") -> None:
+    def __init__(self) -> None:
         self.__text: str = ""
         self.__HTML: str = ""
-        self.__URL: str = URL
+        self.__URL: str = ""
         self.__formatter = HTMLFormatter()
-        if str:
-            self.read_url(URL)
 
     @property
     def text(self) -> str:
@@ -41,6 +40,29 @@ class MiniReadabilityManager:
         """
         # TODO: save in file
         pass
+
+    def use_config(self, path: str) -> None:
+        """ Set parameters from configure json """
+        data = {}
+        try:
+            with open(path, 'r') as f:
+                data = json.load(f)
+        except OSError:
+            print("Can't read file: " + path)
+            return
+
+        if 'words_wrap' in data:
+            self.__formatter.styler.words_wrap = data['words_wrap']
+        if 'rows_size' in data:
+            self.__formatter.styler.rows_size = data['rows_size']
+        if 'except_class_list' in data:
+            self.__formatter.getter.except_class_list = data['except_class_list']
+        if 'except_id_list' in data:
+            self.__formatter.getter.except_id_list = data['except_id_list']
+        if 'except_tag_list' in data:
+            self.__formatter.getter.except_tag_list = data['except_tag_list']
+        if 'need_attr_list' in data:
+            self.__formatter.getter.need_attr_list = data['need_attr_list']
 
     def read_url(self, URL: str) -> str:
         """
