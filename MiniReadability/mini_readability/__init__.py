@@ -1,5 +1,7 @@
 import requests
 import json
+import re
+import os
 from mini_readability.HTML_formatter import HTMLFormatter
 
 
@@ -38,8 +40,16 @@ class MiniReadabilityManager:
         save mini readable text in file
         path =  [CUR_DIR]/[URL].txt
         """
-        # TODO: save in file
-        pass
+        path = re.sub(r'(^.*//)|(//+$)', '', self.__URL)
+        dirs = [i for i in path.split('/') if i]
+        path = ''
+        for d in dirs[:-1]:
+            if d:
+                path += d + '/'
+                if not (os.path.exists(path) and os.path.isdir(path)):
+                    os.mkdir(path)
+        with open(path + dirs[-1] + '.txt', 'w') as f:
+            f.write(self.__text)
 
     def use_config(self, path: str) -> None:
         """ Set parameters from configure json """
